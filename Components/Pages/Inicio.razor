@@ -66,17 +66,36 @@
 
 @code{
     List<Reporte> reportes = new List<Reporte>();
+    private System.Timers.Timer timer;
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
         {
-            var reportesJson = await JSx.InvokeAsync<string>("localStorage.getItem", "reportes");
+            await CargarReportes();
 
-            if (reportesJson != null)
-            {
-                reportes = JsonSerializer.Deserialize<List<Reporte>>(reportesJson);
-            }
+            // Configurar el temporizador para actualizar cada 2 segundos
+            timer = new System.Timers.Timer(2000);
+            timer.Elapsed += async (sender, e) => await CargarReportes();
+            timer.Start();
         }
+    }
+
+    private async Task CargarReportes()
+    {
+        var reportesJson = await JSx.InvokeAsync<string>("localStorage.getItem", "reportes");
+
+        if (reportesJson != null)
+        {
+            reportes = JsonSerializer.Deserialize<List<Reporte>>(reportesJson);
+            StateHasChanged(); // Fuerza la actualización del componente
+        }
+    }
+
+    public void Dispose()
+    {
+        // Detener el temporizador al eliminar el componente
+        timer?.Stop();
+        timer?.Dispose();
     }
 }
