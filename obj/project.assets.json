@@ -8,19 +8,24 @@
     "net8.0": []
   },
   "packageFolders": {
-    "C:\\Users\\admin\\.nuget\\packages\\": {}
+    "C:\\Users\\elmej\\.nuget\\packages\\": {},
+    "D:\\MicrosoftVisualStudio\\shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\admin\\Desktop\\Tarea3blazor\\Tarea03.csproj",
+      "projectUniqueName": "D:\\programacion\\repos\\tarea3\\Tarea03.csproj",
       "projectName": "Tarea03",
-      "projectPath": "C:\\Users\\admin\\Desktop\\Tarea3blazor\\Tarea03.csproj",
-      "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\admin\\Desktop\\Tarea3blazor\\obj\\",
+      "projectPath": "D:\\programacion\\repos\\tarea3\\Tarea03.csproj",
+      "packagesPath": "C:\\Users\\elmej\\.nuget\\packages\\",
+      "outputPath": "D:\\programacion\\repos\\tarea3\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "D:\\MicrosoftVisualStudio\\shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\elmej\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -28,6 +33,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -69,7 +75,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
