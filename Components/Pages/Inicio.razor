@@ -1,0 +1,82 @@
+﻿@page "/"
+@rendermode InteractiveServer
+@using System.Text.Json
+@inject IJSRuntime JSx
+
+<PageTitle>Estadistica</PageTitle>
+
+<h1>Estadistica de los Accidentes</h1>
+<hr />
+<h4>DashBoard</h4>
+
+<div class="report-container">
+    <div class="report-item casos">
+        <h5>Cantidad de casos registrados: <span>@reportes.Count</span></h5>
+    </div>
+    <div class="report-item vehiculos">
+        <h5>Total de vehículos: <span>@reportes.Sum(r => r.VehiculosInvolucrados)</span></h5>
+    </div>
+    <div class="report-item muertos">
+        <h5>Total de muertos: <span>@reportes.Sum(r => r.Muertos)</span></h5>
+    </div>
+    <div class="report-item heridos">
+        <h5>Total de heridos: <span>@reportes.Sum(r => r.Heridos)</span></h5>
+    </div>
+    <div class="report-item costos">
+        <h5>Total de costos estimados: <span>@reportes.Sum(r => r.CostoEstimado)</span></h5>
+    </div>
+</div>
+
+<style>
+    .report-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .report-item {
+        background-color: #ffffff;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        padding: 15px;
+        text-align: center;
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .report-item h5 {
+        margin: 0;
+        font-size: 1.2em;
+        color: #333;
+    }
+
+    .report-item span {
+        font-weight: bold;
+        color: #007bff; 
+    }
+
+    .report-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    }
+</style>
+
+@code{
+    List<Reporte> reportes = new List<Reporte>();
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            var reportesJson = await JSx.InvokeAsync<string>("localStorage.getItem", "reportes");
+
+            if (reportesJson != null)
+            {
+                reportes = JsonSerializer.Deserialize<List<Reporte>>(reportesJson);
+            }
+        }
+    }
+}
